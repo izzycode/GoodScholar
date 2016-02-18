@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Code school</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= boldify user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.code_school.name if user.code_school %></td>
+
+        <td><%= time_ago_in_words user.created_at %></td>
+        <td><%= distance_of_time_in_words_to_now user.created_at %></td>
+        <td><%= number_to_percentage 80 %></td>
+        <td><%= number_to_phone 7864498183 %></td>
+        <td><%= number_to_currency 788.3 %></td>
+        <td><%= highlight('This is how you highlight something', 'highlight') %></td>
+
+
+
+
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p> <%= pluralize(@users.count, 'person') %></p>
+<br>
+<%= link_to 'New User', new_user_path %>
